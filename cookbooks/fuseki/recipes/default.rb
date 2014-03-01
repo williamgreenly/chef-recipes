@@ -45,9 +45,9 @@ template node["fuseki"]["path"] + "config.ttl" do
 	action :create
 	variables({
 		:path => node['fuseki']['path'],
-		:mode = > node['fuseki']['mode'],
-		:data = > node['fuseki']['data'],
-		:name = > node['fuseki']['name'],
+		:mode => node['fuseki']['mode'],
+		:data => node['fuseki']['data'],
+		:name => node['fuseki']['name'],
 		:update => node['fuseki']['update'],
 		:port => node['fuseki']['port'],
 		:localhostonly => node['fuseki']['localhostonly']
