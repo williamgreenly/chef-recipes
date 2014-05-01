@@ -39,10 +39,12 @@ execute "untar-fuseki" do
   	command "tar -xzf " + target
   	creates tar_output
 end
-
+=begin
 template node["fuseki"]["path"] + "config.ttl" do
 	source "default/config.erb"
 	action :create
+
+
 	variables({
 		:path => node['fuseki']['path'],
 		:mode => node['fuseki']['mode'],
@@ -52,16 +54,14 @@ template node["fuseki"]["path"] + "config.ttl" do
 		:port => node['fuseki']['port'],
 		:localhostonly => node['fuseki']['localhostonly']
 	})
-end
 
-execute "service-fuseki" do
-	command "cd /etc/init.d/ && sudo ln -s " + node["fuseki"]["path"] + "fuseki"
-	creates service_output
 end
+=end
 
-execute "service-fuseki" do
-	command "cd /etc/init.d/ && sudo ln -s " + node["fuseki"]["path"] + "fuseki"
-	creates service_output
+
+link "/etc/init.d/fuseki" do
+	link_type :symbolic
+	to node["fuseki"]["path"] + "fuseki"
 end
 
 service "fuseki" do
